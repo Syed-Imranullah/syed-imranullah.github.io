@@ -31,6 +31,7 @@ html {
   top: 0;
   background-color: #0d0d0d;
   opacity: 90%;
+  z-index: 1000;
 }
 
 .nav ul {
@@ -271,4 +272,88 @@ html {
   color: var(--neon-pink);
   list-style: none;
   margin: 5px;
+}
+
+#projects h2 {
+  color: var(--neon-purple);
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow:
+    0 0 15px var(--neon-purple),
+    0 0 30px var(--neon-purple);
+}
+
+#contact h2{
+color: var(--neon-pink);
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow:
+    0 0 15px var(--neon-purple),
+    0 0 30px var(--neon-purple);
+}
+
+#contact {
+  padding: 80px 20px;
+  text-align: center;
+  
+}
+
+.contact-form{
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  gap: 15px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  padding: 15px;
+  border-radius: 15px;
+  color: #eee;
+  background-color: #0d0d0d;
+  font-size: 1rem;
+  transition: 0.3s;
+  border: 2px solid var(--neon-purple);
+}
+.contact-form input:focus,
+.contact-form textarea:focus{
+outline: none;
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.submit-btn{
+  padding: 15px;
+  border-radius: 25px;
+  color: var(--neon-purple);
+  background-color: #0d0d0d;
+  font-size: 1rem;
+  transition: 0.2s;
+  border: 2px solid var(--neon-purple);
+}
+.submit-btn:focus{
+  outline: none;
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 10px var(--neon-pink);
+}
+
+#contact p{
+font-size: 1.2rem;
+}
+
+.socials {
+  margin-top: 20px;
+}
+.socials a {
+  margin: 0 20px;
+  color: var(--neon-blue);
+  font-weight: bold;
+  text-decoration: none;
+}
+.socials a:hover {
+  color: var(--neon-pink);
 }
