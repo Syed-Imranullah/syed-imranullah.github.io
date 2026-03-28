@@ -15,4 +15,4 @@ The part I found the most challenging and ended up being proud of was making the
 
 3. How did you leverage AI to assist your development of this project?
 
-I used AI to help me understand and solve problems faster. I asked it to explain CSS positioning, flex, and grid in simple terms, and also to give suggestions for hover effects and styling my dark/neon theme. Whenever I ran into layout issues, AI gave me examples I could test and adjust. Even though AI helped me figure things out, I made sure I understood every line of code and changed it so it worked exactly how I wanted.
+I used AI to help me understand and solve problems faster. I asked AI to explain CSS positioning, flex, and grid in simple terms, and also to give suggestions for hover effects and styling my dark/neon theme. Whenever I ran into layout issues, AI gave me examples I could test and adjust. Even though AI helped me figure things out, I made sure I understood every line of code and changed it so it worked exactly how I wanted.
