@@ -4,7 +4,7 @@ export const projects = [
     title: "Star Wars Character Explorer",
     description: "A frontend web application...",
     tech: ["JavaScript", "HTML", "CSS", "Fetch API"],
-    link: "https://github.com/Syed-Imranullah/Star-Wars-Character-Explorer",
+    link: "https://github.com/syed-hannah-mls/mod-4-project",
     detail: [
       "A frontend web application that allows users to search and explore information about Star Wars characters.",
       "Integrated Fetch API with asynchronous JavaScript to retrieve paginated character data and dynamically render results.",
