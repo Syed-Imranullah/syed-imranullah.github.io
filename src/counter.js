@@ -2,14 +2,16 @@ export const projects = [
   {
     number: 1,
     title: "Star Wars Character Explorer",
-    description: "A frontend web application...",
+    description: "A frontend web application to explore Star Wars characters.",
     tech: ["JavaScript", "HTML", "CSS", "Fetch API"],
-    link: "https://github.com/syed-hannah-mls/mod-4-project",
+    link: "https://syed-hannah-mls.github.io/mod-4-project/", // deployed app
+    github: "https://github.com/syed-hannah-mls/mod-4-project", // GitHub repo
+    presentation: "https://docs.google.com/presentation/d/1sbuY7oEAvEeycXVkX39-Yre0vyNzfN05UpbmRnNm37A/edit?usp=sharing", // presentation link
     detail: [
-      "A frontend web application that allows users to search and explore information about Star Wars characters.",
-      "Integrated Fetch API with asynchronous JavaScript to retrieve paginated character data and dynamically render results.",
+      "Allows users to search and explore information about Star Wars characters.",
+      "Integrated Fetch API with async JavaScript to retrieve paginated character data and dynamically render results.",
       "Implemented client-side search filtering and modal-based character detail views using DOM manipulation and event listeners.",
-      "Designed responsive layouts and interactive UI components with HTML & CSS to ensure consistent navigation and character browsing across mobile and desktop devices."
+      "Designed responsive layouts and interactive UI components with HTML & CSS to ensure consistent navigation and character browsing across devices."
     ],
     date: "Feb 2026"
   },
