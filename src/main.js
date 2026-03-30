@@ -1,11 +1,8 @@
 // main.js
-import "./style.css";
 import { projects } from "./counter.js";
 import { animateOnScroll } from "./animation.js";
 
-// -----------------------------
-// DOM ELEMENTS
-// -----------------------------
+// DOM elements
 const projectGrid = document.getElementById("project-grid");
 const backBtn = document.getElementById("backToTop");
 const form = document.querySelector(".contact-form");
@@ -20,35 +17,28 @@ const modalTech = document.getElementById("modalTech");
 const modalLink = document.getElementById("modalLink");
 const closeModal = document.getElementById("closeModal");
 
-// -----------------------------
-// CREATE PROJECT CARD FUNCTION
-// -----------------------------
+// CREATE PROJECT CARD
 function createProjectCard(project) {
   const card = document.createElement("div");
   card.className = "project-card";
 
-  // Number
   const numberDiv = document.createElement("div");
   numberDiv.className = "project-number";
   numberDiv.textContent = project.number;
   card.appendChild(numberDiv);
 
-  // Title
   const title = document.createElement("h3");
   title.textContent = project.title;
   card.appendChild(title);
 
-  // Description
   const desc = document.createElement("p");
   desc.textContent = project.description;
   card.appendChild(desc);
 
-  // Tech badges
   if (project.tech.length > 0) {
     const techDiv = document.createElement("div");
     techDiv.className = "tech-badge";
     const ul = document.createElement("ul");
-    ul.className = "tech-badge";
     project.tech.forEach((tech) => {
       const li = document.createElement("li");
       li.textContent = tech;
@@ -58,13 +48,12 @@ function createProjectCard(project) {
     card.appendChild(techDiv);
   }
 
-  // Open modal on click
+  // Modal
   card.addEventListener("click", () => {
     modal.style.display = "block";
     modalTitle.textContent = project.title;
     modalDate.textContent = project.date || "";
 
-    // Details
     modalDetails.innerHTML = "";
     project.detail?.forEach((item) => {
       const li = document.createElement("li");
@@ -72,7 +61,6 @@ function createProjectCard(project) {
       modalDetails.appendChild(li);
     });
 
-    // Tech
     modalTech.innerHTML = "";
     const techUl = document.createElement("ul");
     techUl.className = "tech-badge";
@@ -83,63 +71,49 @@ function createProjectCard(project) {
     });
     modalTech.appendChild(techUl);
 
-    // GitHub/Live link
     modalLink.href = project.link;
   });
 
   return card;
 }
 
-// -----------------------------
-// RENDER ALL PROJECTS
-// -----------------------------
+// Render all projects
 projects.forEach((project) => {
   const card = createProjectCard(project);
   projectGrid.appendChild(card);
 });
 
-// -----------------------------
-// MODAL CLOSE EVENTS
-// -----------------------------
+// Modal close
 closeModal.addEventListener("click", () => (modal.style.display = "none"));
 window.addEventListener("click", (e) => {
   if (e.target === modal) modal.style.display = "none";
 });
 
-// -----------------------------
-// BACK TO TOP BUTTON
-// -----------------------------
+// Back to top
 window.addEventListener("scroll", () => {
   backBtn.style.display = window.scrollY > 300 ? "block" : "none";
 });
-
 backBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// -----------------------------
-// CONTACT FORM SUBMISSION
-// -----------------------------
+// Contact form
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   submitBtn.textContent = "Sending...";
-
   const formData = new FormData(form);
-
   try {
     const response = await fetch(form.action, {
       method: form.method,
       body: formData,
       headers: { Accept: "application/json" },
     });
-
     if (response.ok) {
       const successMsg = document.createElement("p");
       successMsg.textContent = "Thanks! Your message was sent successfully.";
       successMsg.style.color = "#0f0";
       successMsg.style.fontWeight = "bold";
       form.appendChild(successMsg);
-
       form.reset();
       setTimeout(() => successMsg.remove(), 4000);
     } else {
@@ -148,11 +122,8 @@ form.addEventListener("submit", async (e) => {
   } catch (err) {
     alert("Oops! There was a problem sending your message.");
   }
-
   submitBtn.textContent = "Send Message";
 });
 
-// -----------------------------
-// INIT SCROLL ANIMATION
-// -----------------------------
+// Animate projects
 animateOnScroll();

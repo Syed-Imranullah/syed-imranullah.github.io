@@ -9,7 +9,7 @@ export const projects = [
       "A frontend web application that allows users to search and explore information about Star Wars characters.",
       "Integrated Fetch API with asynchronous JavaScript to retrieve paginated character data and dynamically render results.",
       "Implemented client-side search filtering and modal-based character detail views using DOM manipulation and event listeners.",
-      "Designed responsive layouts and interactive UI components with HTML & CSS to ensure consistent navigation and character browsing across mobile and desktop devices using Vite."
+      "Designed responsive layouts and interactive UI components with HTML & CSS to ensure consistent navigation and character browsing across mobile and desktop devices."
     ],
     date: "Feb 2026"
   },
@@ -48,4 +48,4 @@ export const projects = [
     link: "#",
     date: "TBD"
   }
-]
+];

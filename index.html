@@ -1,15 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio Syed Imranullah</title>
+
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-fIsIKT1a.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bj4gSAov.css">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="./src/style.css" />
+    
+    <!-- Your main JS -->
+    <script type="module" src="./src/main.js"></script>
   </head>
   <body>
     <nav class="nav">
@@ -22,54 +28,43 @@
       </ul>
     </nav>
 
-    <header class="hero">
-      <div class="hero-content" id="home">
+    <header class="hero" id="home">
+      <div class="hero-content">
         <h1>SYED IMRANULLAH</h1>
         <h2>Full-Stack Developer & Creative Problem Solver</h2>
         <p>
-          Building web applications that are functional, user-friendly, and
-          visually engaging. Passionate about front-end and back-end
-          development, solving problems creatively, and exploring new
-          technologies. <br />
-          Currently studying software engineering at The Marcy Lab School,
-          focusing on turning ideas into interactive, real-world projects.
+          Building web applications that are functional, user-friendly, and visually engaging.
+          Passionate about front-end and back-end development, solving problems creatively, and exploring new technologies.
         </p>
-
         <div id="btn-box">
           <a href="#projects" class="btn">View Projects</a>
           <a href="#contact" class="btn">Contact Me</a>
         </div>
       </div>
     </header>
+
     <main>
       <section id="about" class="about">
         <h2>About Me</h2>
         <div class="about-box">
-          <!-- About text -->
           <div class="about-text">
             <p>
               I am a detail-oriented and proactive software engineer pursuing
               the Software Engineering Fellowship at The Marcy Lab School. I
               have hands-on experience building full-stack web applications
-              using
-              <strong>JavaScript, HTML, CSS, Node.js, and Express.js</strong>,
+              using <strong>JavaScript, HTML, CSS, Node.js, and Express.js</strong>,
               and I am proficient with tools like Git, GitHub, VS Code, Vite,
               Figma, Canva, and Illustrator. I focus on creating responsive,
               user-friendly, and accessible applications that provide a seamless
-              experience across devices. Through my projects and experience, I
-              have developed strong problem-solving skills, attention to detail,
-              and the ability to learn and adapt to new technologies quickly.
+              experience across devices.
             </p>
           </div>
-
-          <!-- Skills section -->
           <div class="skills-section">
             <img
               src="https://avatars.githubusercontent.com/u/175929049?v=4"
               alt="Profile Picture"
               class="profile-pic"
             />
-
             <h3>Technical Skills</h3>
             <div class="skills">
               <div class="skill">JavaScript</div>
@@ -87,12 +82,14 @@
           </div>
         </div>
       </section>
+
       <section id="projects" class="projects">
         <h2>Projects</h2>
         <div class="project-grid" id="project-grid">
           <!-- JS will populate project cards here -->
         </div>
       </section>
+
       <div id="projectModal" class="modal">
         <div class="modal-content">
           <span id="closeModal" class="close">&times;</span>
@@ -100,41 +97,27 @@
           <p id="modalDate"></p>
           <ul id="modalDetails"></ul>
           <div id="modalTech" class="tech-badge"></div>
-          <a id="modalLink" href="" target="_blank" class="btn"
-            >View on GitHub</a
-          >
+          <a id="modalLink" href="" target="_blank" class="btn">View on GitHub</a>
         </div>
       </div>
+
       <section id="contact" class="contact">
         <h2>Contact Me</h2>
-        <p>
-          Let's connect! Feel free to reach out via email or check my profiles
-          below.
-        </p>
-        <form
-          action="https://formspree.io/f/xdazndka"
-          class="contact-form"
-          method="POST"
-        >
+        <p>Let's connect! Feel free to reach out via email or check my profiles below.</p>
+        <form action="https://formspree.io/f/xdazndka" method="POST" class="contact-form">
           <input type="text" name="name" placeholder="Your Name" required />
           <input type="email" name="email" placeholder="Email" required />
-          <textarea
-            name="message"
-            rows="5"
-            placeholder="Your message"
-            required
-          ></textarea>
+          <textarea name="message" rows="5" placeholder="Your message" required></textarea>
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
         <div class="socials">
           <a href="https://github.com/Syed-Imranullah">Github</a>
-          <a href="https://www.linkedin.com/in/syed-imranullah-a943a2260/"
-            >Linkedin</a
-          >
+          <a href="https://www.linkedin.com/in/syed-imranullah-a943a2260/">Linkedin</a>
           <a href="mailto:">Email</a>
         </div>
       </section>
     </main>
+
     <footer>2026 Syed Imranullah. All rights reserved.</footer>
     <button id="backToTop">↑</button>
   </body>

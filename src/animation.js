@@ -1,4 +1,3 @@
-// animations.js
 export function animateOnScroll() {
   const cards = document.querySelectorAll(".project-card");
 
@@ -6,7 +5,7 @@ export function animateOnScroll() {
     cards.forEach((card) => {
       const windowHeight = window.innerHeight;
       const cardTop = card.getBoundingClientRect().top;
-      const revealPoint = 150; // adjust how early cards animate
+      const revealPoint = 150;
 
       if (cardTop < windowHeight - revealPoint) {
         card.classList.add("active");
@@ -17,5 +16,5 @@ export function animateOnScroll() {
   }
 
   window.addEventListener("scroll", reveal);
-  reveal(); // run on load
+  reveal();
 }
