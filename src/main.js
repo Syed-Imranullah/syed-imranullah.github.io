@@ -1,170 +1,171 @@
 // main.js
 import { projects } from "./counter.js";
-import { animateOnScroll } from "./animation.js";
+import { animateOnScroll, initParticles, initCursor } from "./animation.js";
 
-// DOM elements
+// ── DOM refs ──────────────────────────────────────────────────────
 const projectGrid = document.getElementById("project-grid");
-const backBtn = document.getElementById("backToTop");
-const form = document.querySelector(".contact-form");
-const submitBtn = form.querySelector(".submit-btn");
+const backBtn     = document.getElementById("backToTop");
+const form        = document.querySelector(".contact-form");
+const submitBtn   = form.querySelector(".submit-btn");
 
-// Modal elements
-const modal = document.getElementById("projectModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalDate = document.getElementById("modalDate");
-const modalDetails = document.getElementById("modalDetails");
-const modalTech = document.getElementById("modalTech");
-const closeModal = document.getElementById("closeModal");
+// Modal refs
+const modal     = document.getElementById("projectModal");
+const mTitle    = document.getElementById("modalTitle");
+const mDate     = document.getElementById("modalDate");
+const mDetails  = document.getElementById("modalDetails");
+const mTech     = document.getElementById("modalTech");
+const closeBtn  = document.getElementById("closeModal");
+const mLive     = document.getElementById("modalLinkLive");
+const mRepo     = document.getElementById("modalLink");
+const mPres     = document.getElementById("modalPresentation");
 
-// buttons already in HTML
-const modalLinkLive = document.getElementById("modalLinkLive");
-const modalLinkRepo = document.getElementById("modalLink");
-const modalLinkPresentation = document.getElementById("modalPresentation");
-
-// CREATE PROJECT CARD
+// ── CREATE PROJECT CARD ───────────────────────────────────────────
 function createProjectCard(project) {
   const card = document.createElement("div");
-  card.className = "project-card";
 
-  const numberDiv = document.createElement("div");
-  numberDiv.className = "project-number";
-  numberDiv.textContent = project.number;
-  card.appendChild(numberDiv);
+  // CHANGE: coming-soon cards get a distinct dashed style
+  card.className = "project-card" + (project.coming ? " card-coming" : "");
 
-  const title = document.createElement("h3");
-  title.textContent = project.title;
-  card.appendChild(title);
-
-  const desc = document.createElement("p");
-  desc.textContent = project.description;
-  card.appendChild(desc);
-
-  if (project.tech.length > 0) {
-    const techDiv = document.createElement("div");
-    techDiv.className = "tech-badge";
-    const ul = document.createElement("ul");
-
-    project.tech.forEach((tech) => {
-      const li = document.createElement("li");
-      li.textContent = tech;
-      ul.appendChild(li);
-    });
-
-    techDiv.appendChild(ul);
-    card.appendChild(techDiv);
+  if (project.coming) {
+    // CHANGE: spinning icon + muted text for coming-soon slot
+    card.innerHTML = `
+      <span class="coming-icon">⟳</span>
+      <h3>${project.title}</h3>
+      <p>${project.description}</p>
+    `;
+    return card;
   }
 
-  // MODAL OPEN
-  card.addEventListener("click", () => {
-    modal.style.display = "block";
+  // CHANGE: numbered label "// 01 — Feb 2026" replaces big circle number
+  const badges = project.tech.map((t) => `<li>${t}</li>`).join("");
+  card.innerHTML = `
+    <div class="project-number">// ${project.number} &mdash; ${project.date}</div>
+    <h3>${project.title}</h3>
+    <p>${project.description}</p>
+    <ul class="tech-badge">${badges}</ul>
+  `;
 
-    modalTitle.textContent = project.title;
-    modalDate.textContent = project.date || "";
-
-    // details
-    modalDetails.innerHTML = "";
-    project.detail?.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      modalDetails.appendChild(li);
-    });
-
-    // tech
-    modalTech.innerHTML = "";
-    const techUl = document.createElement("ul");
-    techUl.className = "tech-badge";
-
-    project.tech.forEach((tech) => {
-      const li = document.createElement("li");
-      li.textContent = tech;
-      techUl.appendChild(li);
-    });
-
-    modalTech.appendChild(techUl);
-
-    // BUTTON LINKS
-    modalLinkLive.href = project.link || "#";
-    modalLinkLive.textContent = "View Live";
-
-    modalLinkRepo.href = project.github || "#";
-    modalLinkRepo.textContent = "View on GitHub";
-
-    if (modalLinkPresentation) {
-      modalLinkPresentation.href = project.presentation || "#";
-      modalLinkPresentation.textContent = "View Presentation";
-    }
-  });
+  // Open modal on click
+  card.addEventListener("click", () => openModal(project));
 
   return card;
 }
 
-// Render projects
-projects.forEach((project) => {
-  const card = createProjectCard(project);
-  projectGrid.appendChild(card);
-});
+// ── OPEN MODAL ───────────────────────────────────────────────────
+function openModal(project) {
+  mTitle.textContent = project.title;
+  mDate.textContent  = project.date;
 
-// Modal close
-closeModal.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+  mDetails.innerHTML = "";
+  project.detail?.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    mDetails.appendChild(li);
+  });
 
-window.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
+  mTech.innerHTML = "";
+  const ul = document.createElement("ul");
+  project.tech.forEach((t) => {
+    const li = document.createElement("li");
+    li.textContent = t;
+    ul.appendChild(li);
+  });
+  mTech.appendChild(ul);
+
+  // CHANGE: hide "View Live" when it's the same as GitHub or missing
+  const hasLive = project.link && project.link !== "#" && project.link !== project.github;
+  mLive.href           = project.link || "#";
+  mLive.style.display  = hasLive ? "inline-flex" : "none";
+
+  mRepo.href = project.github || "#";
+
+  // CHANGE: hide presentation button when no link provided
+  if (project.presentation) {
+    mPres.href         = project.presentation;
+    mPres.style.display = "inline-flex";
+  } else {
+    mPres.style.display = "none";
   }
+
+  modal.style.display = "block";
+}
+
+// ── CLOSE MODAL ───────────────────────────────────────────────────
+function closeModal() {
+  modal.style.display = "none";
+}
+
+closeBtn.addEventListener("click", closeModal);
+window.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+// CHANGE: ESC key also closes modal
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+// ── RENDER PROJECTS ───────────────────────────────────────────────
+projects.forEach((project) => {
+  projectGrid.appendChild(createProjectCard(project));
 });
 
-// Back to top
+// ── BACK TO TOP ───────────────────────────────────────────────────
 window.addEventListener("scroll", () => {
-  backBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  // CHANGE: use flex display to match the centered arrow layout
+  backBtn.style.display = window.scrollY > 320 ? "flex" : "none";
 });
+backBtn.style.alignItems    = "center";
+backBtn.style.justifyContent = "center";
 
 backBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Contact form
+// ── CONTACT FORM ──────────────────────────────────────────────────
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  submitBtn.textContent = "Sending...";
-
-  const formData = new FormData(form);
+  submitBtn.textContent = "Sending…";
 
   try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: formData,
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
       headers: { Accept: "application/json" },
     });
 
-    if (response.ok) {
-      const successMsg = document.createElement("p");
-
-      successMsg.textContent =
-        "Thanks! Your message was sent successfully.";
-
-      successMsg.style.color = "#0f0";
-      successMsg.style.fontWeight = "bold";
-
-      form.appendChild(successMsg);
-
+    if (res.ok) {
+      const msg = document.createElement("p");
+      msg.textContent = "✓ Message sent successfully!";
+      msg.style.cssText =
+        "color:#0f0;font-family:'Space Mono',monospace;font-size:.8rem;margin-top:10px;";
+      form.appendChild(msg);
       form.reset();
-
-      setTimeout(() => successMsg.remove(), 4000);
+      setTimeout(() => msg.remove(), 4000);
     } else {
       alert("Oops! There was a problem sending your message.");
     }
-  } catch (err) {
+  } catch {
     alert("Oops! There was a problem sending your message.");
   }
 
   submitBtn.textContent = "Send Message";
 });
 
-// Animate projects
-animateOnScroll();
+// ── HAMBURGER MENU ────────────────────────────────────────────────
+// CHANGE: mobile hamburger toggle
+const ham   = document.getElementById("hamburger");
+const links = document.getElementById("nav-links");
+
+ham.addEventListener("click", () => {
+  ham.classList.toggle("open");
+  links.classList.toggle("open");
+});
+
+links.querySelectorAll("a").forEach((a) => {
+  a.addEventListener("click", () => {
+    ham.classList.remove("open");
+    links.classList.remove("open");
+  });
+});
+
+// ── INIT ANIMATIONS ───────────────────────────────────────────────
+// CHANGE: three new inits from animation.js
+initParticles();   // floating neon dots canvas
+initCursor();      // custom dot + ring cursor
+animateOnScroll(); // IntersectionObserver card reveals

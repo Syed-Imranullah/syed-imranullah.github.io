@@ -1,79 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio Syed Imranullah</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syed Imranullah — Portfolio</title>
+  <meta name="description" content="Syed Imranullah — Full-Stack Developer based in New York, NY." />
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+  <!--
+    CHANGE: Font swap from Orbitron/Inter to:
+    - Syne 800  → headings (editorial, techy, distinctive)
+    - Space Mono → labels, badges, nav (coded monospace feel)
+    - DM Sans   → body copy (clean, not generic Inter)
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="./src/style.css" />
-    
-    <!-- Your main JS -->
-    <script type="module" src="./src/main.js"></script>
-  </head>
-  <body>
-    <nav class="nav">
-      <div class="logo">SY</div>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <link rel="stylesheet" href="./src/style.css" />
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
 
-    <header class="hero" id="home">
-      <div class="hero-content">
-        <h1>SYED IMRANULLAH</h1>
-        <h2>Full-Stack Developer & Creative Problem Solver</h2>
-        <p>
-          Building web applications that are functional, user-friendly, and visually engaging.
-          Passionate about front-end and back-end development, solving problems creatively, and exploring new technologies.
-        </p>
-        <div id="btn-box">
-          <a href="#projects" class="btn">View Projects</a>
-          <a href="#contact" class="btn">Contact Me</a>
-        </div>
+  <!-- CHANGE: custom cursor elements (styled + driven in CSS/main.js) -->
+  <div id="cur"></div>
+  <div id="cur-ring"></div>
+
+  <!-- CHANGE: particle canvas for floating neon dot atmosphere -->
+  <canvas id="canvas"></canvas>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">SI</div>
+    <!-- CHANGE: hamburger button for mobile -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <!-- CHANGE: eyebrow label above name -->
+      <span class="eyebrow">Based in New York, NY</span>
+      <h1>SYED IMRANULLAH</h1>
+      <h2>Full-Stack Developer &amp; Creative Problem Solver</h2>
+      <p>
+        Building web applications that are functional, user-friendly, and visually engaging.
+        Pursuing the Software Engineering Fellowship at The Marcy Lab School — specializing in
+        the PERN stack and passionate about crafting seamless digital experiences.
+      </p>
+      <div id="btn-box">
+        <!-- CHANGE: two button styles — filled primary + ghost outline -->
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact"  class="btn btn-ghost">Contact Me</a>
       </div>
-    </header>
+    </div>
+    <!-- CHANGE: animated scroll hint arrow at bottom of hero -->
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </header>
 
-    <main>
-      <section id="about" class="about">
-        <h2>About Me</h2>
-        <div class="about-box">
-          <div class="about-text">
-            <p>
-              I am a detail-oriented and proactive software engineer pursuing
-              the Software Engineering Fellowship at The Marcy Lab School. I
-              have hands-on experience building full-stack web applications
-              using <strong>JavaScript, HTML, CSS, Node.js, and Express.js</strong>,
-              and I am proficient with tools like Git, GitHub, VS Code, Vite,
-              Figma, Canva, and Illustrator. I focus on creating responsive,
-              user-friendly, and accessible applications that provide a seamless
-              experience across devices.
-            </p>
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <!-- CHANGE: section label above every heading -->
+      <span class="section-label">Who I am</span>
+      <h2 class="section-heading purple">About Me</h2>
+
+      <!-- CHANGE: glassmorphism card, 3-col grid layout -->
+      <div class="about-box">
+        <div class="about-text">
+          <p>
+            I am a detail-oriented and proactive software engineer pursuing the
+            <strong>Software Engineering Fellowship</strong> at The Marcy Lab School (Sep 2025 – Present),
+            where I am completing 2,000+ hours of intensive coursework in computer science fundamentals,
+            leadership development, and full-stack web application development using the
+            <strong>PERN stack</strong> (PostgreSQL, Express, React, Node.js).
+          </p>
+          <p>
+            I build responsive, accessible, full-stack applications with a focus on clean architecture
+            and intuitive UI. Proficient with <strong>JavaScript, HTML, CSS, SQL, Node.js, Express.js,
+            and PostgreSQL</strong>, and comfortable using Git, GitHub, VS Code, Vite, Figma, Canva,
+            and Illustrator throughout the development process.
+          </p>
+          <!-- CHANGE: inline tech chip row — quick-scan stack overview -->
+          <div class="tech-stack-inline">
+            <span class="tech-chip">JavaScript</span>
+            <span class="tech-chip">HTML</span>
+            <span class="tech-chip">CSS</span>
+            <span class="tech-chip">SQL</span>
+            <span class="tech-chip">Node.js</span>
+            <span class="tech-chip">Express.js</span>
+            <span class="tech-chip">PostgreSQL</span>
+            <span class="tech-chip">React</span>
+            <span class="tech-chip">Git / GitHub</span>
+            <span class="tech-chip">Vite</span>
+            <span class="tech-chip">Figma</span>
           </div>
+        </div>
+
+        <!-- CHANGE: vertical divider between bio and sidebar -->
+        <div class="about-divider"></div>
+
+        <div class="about-sidebar">
+          <img
+            src="https://avatars.githubusercontent.com/u/175929049?v=4"
+            alt="Syed Imranullah"
+            class="profile-pic"
+          />
           <div class="skills-section">
-            <img
-              src="https://avatars.githubusercontent.com/u/175929049?v=4"
-              alt="Profile Picture"
-              class="profile-pic"
-            />
-            <h3>Technical Skills</h3>
+            <h3>// Technical Skills</h3>
             <div class="skills">
               <div class="skill">JavaScript</div>
               <div class="skill">HTML</div>
               <div class="skill">CSS</div>
+              <div class="skill">SQL</div>
               <div class="skill">Node.js</div>
               <div class="skill">Express.js</div>
-              <div class="skill">Git & GitHub</div>
-              <div class="skill">VS Code</div>
+              <div class="skill">PostgreSQL</div>
+              <div class="skill">Git</div>
               <div class="skill">Vite</div>
               <div class="skill">Figma</div>
               <div class="skill">Canva</div>
@@ -81,46 +133,59 @@
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="projects" class="projects">
-        <h2>Projects</h2>
-        <div class="project-grid" id="project-grid">
-          <!-- JS will populate project cards here -->
-        </div>
-      </section>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <span class="section-label">What I've built</span>
+      <h2 class="section-heading purple">Projects</h2>
+      <div class="project-grid" id="project-grid">
+        <!-- JS populates project cards here -->
+      </div>
+    </section>
 
-      <div id="projectModal" class="modal">
-        <div class="modal-content">
-          <span id="closeModal" class="close">&times;</span>
-          <h3 id="modalTitle"></h3>
-          <p id="modalDate"></p>
-          <ul id="modalDetails"></ul>
-          <div id="modalTech" class="tech-badge"></div>
-          <a id="modalLinkLive" href="" target="_blank" class="btn">View Live</a>
-          <a id="modalLink" href="" target="_blank" class="btn">View on GitHub</a>
-          <a id="modalPresentation" href="" target="_blank" class="btn">View Presentation</a>
+    <!-- MODAL -->
+    <div id="projectModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <span id="modalDate"></span>
+        <ul id="modalDetails"></ul>
+        <div id="modalTech" class="tech-badge"></div>
+        <!-- CHANGE: modal buttons in a flex row -->
+        <div class="modal-btns">
+          <a id="modalLinkLive"     href="#" target="_blank" class="btn btn-primary">View Live</a>
+          <a id="modalLink"         href="#" target="_blank" class="btn btn-ghost">GitHub</a>
+          <a id="modalPresentation" href="#" target="_blank" class="btn btn-ghost">Presentation</a>
         </div>
       </div>
+    </div>
 
-      <section id="contact" class="contact">
-        <h2>Contact Me</h2>
-        <p>Let's connect! Feel free to reach out via email or check my profiles below.</p>
-        <form action="https://formspree.io/f/xdazndka" method="POST" class="contact-form">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <textarea name="message" rows="5" placeholder="Your message" required></textarea>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-        <div class="socials">
-          <a href="https://github.com/Syed-Imranullah">Github</a>
-          <a href="https://www.linkedin.com/in/syed-imranullah-a943a2260/">Linkedin</a>
-          <a href="mailto:">Email</a>
-        </div>
-      </section>
-    </main>
+    <!-- CONTACT -->
+    <section id="contact">
+      <span class="section-label">Get in touch</span>
+      <h2 class="section-heading pink">Contact Me</h2>
+      <p>Let's connect! Feel free to reach out via email or check my profiles below.</p>
 
-    <footer>2026 Syed Imranullah. All rights reserved.</footer>
-    <button id="backToTop">↑</button>
-  </body>
+      <form action="https://formspree.io/f/xdazndka" method="POST" class="contact-form">
+        <input  type="text"  name="name"    placeholder="Your Name"    required />
+        <input  type="email" name="email"   placeholder="Your Email"   required />
+        <textarea name="message" rows="5"   placeholder="Your Message" required></textarea>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+
+      <div class="socials">
+        <a href="https://github.com/Syed-Imranullah"                      target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/syed-imranullah-a943a2260/" target="_blank">LinkedIn</a>
+        <a href="mailto:syed.imranullah97@email.com">Email</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>&copy; 2026 Syed Imranullah &mdash; All rights reserved.</footer>
+  <button id="backToTop">↑</button>
+
+</body>
 </html>
