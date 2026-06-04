@@ -19,15 +19,16 @@ const mLive     = document.getElementById("modalLinkLive");
 const mRepo     = document.getElementById("modalLink");
 const mPres     = document.getElementById("modalPresentation");
 
+// ── DYNAMIC FOOTER YEAR ───────────────────────────────────────────
+const yearEl = document.getElementById("footer-year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 // ── CREATE PROJECT CARD ───────────────────────────────────────────
 function createProjectCard(project) {
   const card = document.createElement("div");
-
-  // CHANGE: coming-soon cards get a distinct dashed style
   card.className = "project-card" + (project.coming ? " card-coming" : "");
 
   if (project.coming) {
-    // CHANGE: spinning icon + muted text for coming-soon slot
     card.innerHTML = `
       <span class="coming-icon">⟳</span>
       <h3>${project.title}</h3>
@@ -36,7 +37,6 @@ function createProjectCard(project) {
     return card;
   }
 
-  // CHANGE: numbered label "// 01 — Feb 2026" replaces big circle number
   const badges = project.tech.map((t) => `<li>${t}</li>`).join("");
   card.innerHTML = `
     <div class="project-number">// ${project.number} &mdash; ${project.date}</div>
@@ -45,9 +45,7 @@ function createProjectCard(project) {
     <ul class="tech-badge">${badges}</ul>
   `;
 
-  // Open modal on click
   card.addEventListener("click", () => openModal(project));
-
   return card;
 }
 
@@ -72,16 +70,14 @@ function openModal(project) {
   });
   mTech.appendChild(ul);
 
-  // CHANGE: hide "View Live" when it's the same as GitHub or missing
   const hasLive = project.link && project.link !== "#" && project.link !== project.github;
   mLive.href           = project.link || "#";
   mLive.style.display  = hasLive ? "inline-flex" : "none";
 
   mRepo.href = project.github || "#";
 
-  // CHANGE: hide presentation button when no link provided
   if (project.presentation) {
-    mPres.href         = project.presentation;
+    mPres.href          = project.presentation;
     mPres.style.display = "inline-flex";
   } else {
     mPres.style.display = "none";
@@ -97,7 +93,6 @@ function closeModal() {
 
 closeBtn.addEventListener("click", closeModal);
 window.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
-// CHANGE: ESC key also closes modal
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
 // ── RENDER PROJECTS ───────────────────────────────────────────────
@@ -107,10 +102,9 @@ projects.forEach((project) => {
 
 // ── BACK TO TOP ───────────────────────────────────────────────────
 window.addEventListener("scroll", () => {
-  // CHANGE: use flex display to match the centered arrow layout
   backBtn.style.display = window.scrollY > 320 ? "flex" : "none";
 });
-backBtn.style.alignItems    = "center";
+backBtn.style.alignItems     = "center";
 backBtn.style.justifyContent = "center";
 
 backBtn.addEventListener("click", () => {
@@ -148,7 +142,6 @@ form.addEventListener("submit", async (e) => {
 });
 
 // ── HAMBURGER MENU ────────────────────────────────────────────────
-// CHANGE: mobile hamburger toggle
 const ham   = document.getElementById("hamburger");
 const links = document.getElementById("nav-links");
 
@@ -165,7 +158,6 @@ links.querySelectorAll("a").forEach((a) => {
 });
 
 // ── INIT ANIMATIONS ───────────────────────────────────────────────
-// CHANGE: three new inits from animation.js
-initParticles();   // floating neon dots canvas
-initCursor();      // custom dot + ring cursor
-animateOnScroll(); // IntersectionObserver card reveals
+initParticles();
+initCursor();
+animateOnScroll();

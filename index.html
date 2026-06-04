@@ -4,14 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Syed Imranullah — Portfolio</title>
-  <meta name="description" content="Syed Imranullah — Full-Stack Developer based in New York, NY." />
+  <meta name="description" content="Syed Imranullah — Full-Stack Developer based in New York, NY. Building fast, accessible web apps with the PERN stack." />
 
-  <!--
-    CHANGE: Font swap from Orbitron/Inter to:
-    - Syne 800  → headings (editorial, techy, distinctive)
-    - Space Mono → labels, badges, nav (coded monospace feel)
-    - DM Sans   → body copy (clean, not generic Inter)
-  -->
+  <!-- Open Graph / LinkedIn / Twitter previews -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://syed-imranullah.dev/" />
+  <meta property="og:title"       content="Syed Imranullah — Full-Stack Developer" />
+  <meta property="og:description" content="Full-Stack Developer based in New York, NY. PERN stack, Chrome extensions, real-time apps." />
+  <meta property="og:image"       content="https://avatars.githubusercontent.com/u/175929049?v=4" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="Syed Imranullah — Full-Stack Developer" />
+  <meta name="twitter:description" content="Full-Stack Developer based in New York, NY. PERN stack, Chrome extensions, real-time apps." />
+  <meta name="twitter:image"      content="https://avatars.githubusercontent.com/u/175929049?v=4" />
+
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./src/style.css" />
@@ -19,17 +24,16 @@
 </head>
 <body>
 
-  <!-- CHANGE: custom cursor elements (styled + driven in CSS/main.js) -->
+  <!-- Custom cursor elements -->
   <div id="cur"></div>
   <div id="cur-ring"></div>
 
-  <!-- CHANGE: particle canvas for floating neon dot atmosphere -->
+  <!-- Particle canvas background -->
   <canvas id="canvas"></canvas>
 
   <!-- NAV -->
   <nav class="nav">
     <div class="logo">SI</div>
-    <!-- CHANGE: hamburger button for mobile -->
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -44,22 +48,19 @@
   <!-- HERO -->
   <header class="hero" id="home">
     <div class="hero-content">
-      <!-- CHANGE: eyebrow label above name -->
       <span class="eyebrow">Based in New York, NY</span>
       <h1>SYED IMRANULLAH</h1>
       <h2>Full-Stack Developer &amp; Creative Problem Solver</h2>
       <p>
-        Building web applications that are functional, user-friendly, and visually engaging.
-        Pursuing the Software Engineering Fellowship at The Marcy Lab School — specializing in
-        the PERN stack and passionate about crafting seamless digital experiences.
+        I build full-stack web applications and browser extensions — from JWT-authenticated REST APIs
+        to real-time scoring engines and Chrome MV3 capture tools. Currently completing the
+        Software Engineering Fellowship at The Marcy Lab School, specializing in the PERN stack.
       </p>
       <div id="btn-box">
-        <!-- CHANGE: two button styles — filled primary + ghost outline -->
         <a href="#projects" class="btn btn-primary">View Projects</a>
         <a href="#contact"  class="btn btn-ghost">Contact Me</a>
       </div>
     </div>
-    <!-- CHANGE: animated scroll hint arrow at bottom of hero -->
     <div class="scroll-hint">
       <span>Scroll</span>
       <div class="scroll-arrow"></div>
@@ -70,17 +71,15 @@
 
     <!-- ABOUT -->
     <section id="about" class="about">
-      <!-- CHANGE: section label above every heading -->
       <span class="section-label">Who I am</span>
       <h2 class="section-heading purple">About Me</h2>
 
-      <!-- CHANGE: glassmorphism card, 3-col grid layout -->
       <div class="about-box">
         <div class="about-text">
           <p>
-            I am a detail-oriented and proactive software engineer pursuing the
+            I am a detail-oriented software engineer pursuing the
             <strong>Software Engineering Fellowship</strong> at The Marcy Lab School (Sep 2025 – Present),
-            where I am completing 2,000+ hours of intensive coursework in computer science fundamentals,
+            completing 2,000+ hours of intensive coursework in computer science fundamentals,
             leadership development, and full-stack web application development using the
             <strong>PERN stack</strong> (PostgreSQL, Express, React, Node.js).
           </p>
@@ -90,23 +89,9 @@
             and PostgreSQL</strong>, and comfortable using Git, GitHub, VS Code, Vite, Figma, Canva,
             and Illustrator throughout the development process.
           </p>
-          <!-- CHANGE: inline tech chip row — quick-scan stack overview -->
-          <div class="tech-stack-inline">
-            <span class="tech-chip">JavaScript</span>
-            <span class="tech-chip">HTML</span>
-            <span class="tech-chip">CSS</span>
-            <span class="tech-chip">SQL</span>
-            <span class="tech-chip">Node.js</span>
-            <span class="tech-chip">Express.js</span>
-            <span class="tech-chip">PostgreSQL</span>
-            <span class="tech-chip">React</span>
-            <span class="tech-chip">Git / GitHub</span>
-            <span class="tech-chip">Vite</span>
-            <span class="tech-chip">Figma</span>
-          </div>
         </div>
 
-        <!-- CHANGE: vertical divider between bio and sidebar -->
+        <!-- Vertical divider -->
         <div class="about-divider"></div>
 
         <div class="about-sidebar">
@@ -125,6 +110,7 @@
               <div class="skill">Node.js</div>
               <div class="skill">Express.js</div>
               <div class="skill">PostgreSQL</div>
+              <div class="skill">React</div>
               <div class="skill">Git</div>
               <div class="skill">Vite</div>
               <div class="skill">Figma</div>
@@ -152,8 +138,8 @@
         <h3 id="modalTitle"></h3>
         <span id="modalDate"></span>
         <ul id="modalDetails"></ul>
-        <div id="modalTech" class="tech-badge"></div>
-        <!-- CHANGE: modal buttons in a flex row -->
+        <!-- FIX: removed incorrect "tech-badge" class from wrapper div; JS appends a <ul> inside -->
+        <div id="modalTech"></div>
         <div class="modal-btns">
           <a id="modalLinkLive"     href="#" target="_blank" class="btn btn-primary">View Live</a>
           <a id="modalLink"         href="#" target="_blank" class="btn btn-ghost">GitHub</a>
@@ -184,7 +170,8 @@
 
   </main>
 
-  <footer>&copy; 2026 Syed Imranullah &mdash; All rights reserved.</footer>
+  <!-- FIX: year set dynamically by main.js via #footer-year -->
+  <footer>&copy; <span id="footer-year"></span> Syed Imranullah &mdash; All rights reserved.</footer>
   <button id="backToTop">↑</button>
 
 </body>

@@ -9,8 +9,6 @@
 
 /* ═══════════════════════════════════════════════
    CSS TOKENS
-   CHANGE: glow helpers as CSS vars so they stay
-   consistent everywhere instead of repeating values
 ═══════════════════════════════════════════════ */
 :root {
   --purple:  #a200ff;
@@ -34,12 +32,11 @@ body {
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
-  cursor: none; /* CHANGE: custom cursor replaces default */
+  cursor: none;
 }
 
 /* ═══════════════════════════════════════════════
-   CUSTOM CURSOR  (CHANGE: brand new)
-   Dot snaps immediately; ring lags behind via JS lerp
+   CUSTOM CURSOR
 ═══════════════════════════════════════════════ */
 #cur {
   width: 10px;
@@ -65,7 +62,6 @@ body {
   transition: width 0.18s, height 0.18s, border-color 0.18s;
 }
 
-/* CHANGE: ring grows pink when hovering interactive elements */
 .cursor-grow #cur-ring {
   width: 52px;
   height: 52px;
@@ -73,8 +69,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════
-   GRAIN TEXTURE  (CHANGE: brand new)
-   Subtle SVG noise overlay adds depth & tactility
+   GRAIN TEXTURE
 ═══════════════════════════════════════════════ */
 body::after {
   content: '';
@@ -116,7 +111,6 @@ nav, header, main, footer, #backToTop, .modal {
 
 /* ═══════════════════════════════════════════════
    NAV
-   CHANGE: frosted glass blur + sliding underlines
 ═══════════════════════════════════════════════ */
 .nav {
   display: flex;
@@ -130,7 +124,6 @@ nav, header, main, footer, #backToTop, .modal {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  /* animation: slideDown 0.6s ease both; — removed, was pushing hero off screen on load */
 }
 
 .logo {
@@ -159,7 +152,6 @@ nav, header, main, footer, #backToTop, .modal {
   transition: color 0.25s;
 }
 
-/* CHANGE: sliding underline on hover */
 .nav a::after {
   content: '';
   position: absolute;
@@ -173,7 +165,6 @@ nav, header, main, footer, #backToTop, .modal {
 .nav a:hover { color: var(--pink); }
 .nav a:hover::after { width: 100%; }
 
-/* CHANGE: hamburger for mobile */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -196,8 +187,6 @@ nav, header, main, footer, #backToTop, .modal {
 
 /* ═══════════════════════════════════════════════
    HERO
-   CHANGE: radial spotlight bg, gradient text,
-   staggered fade-up animations, scroll hint
 ═══════════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
@@ -220,7 +209,6 @@ nav, header, main, footer, #backToTop, .modal {
   max-width: 860px;
 }
 
-/* CHANGE: eyebrow label above name */
 .eyebrow {
   font-family: 'Space Mono', monospace;
   font-size: 0.75rem;
@@ -234,10 +222,9 @@ nav, header, main, footer, #backToTop, .modal {
 .hero-content h1 {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: clamp(2.6rem, 7vw, 5.2rem); /* CHANGE: fluid type scale */
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
   line-height: 1.03;
   letter-spacing: -0.02em;
-  /* CHANGE: gradient text purple → pink → cyan */
   background: linear-gradient(130deg, var(--purple) 0%, var(--pink) 55%, var(--cyan) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -265,7 +252,6 @@ nav, header, main, footer, #backToTop, .modal {
   animation: fadeUp 0.7s 0.8s ease both;
 }
 
-/* CHANGE: blinking cursor element inside h1 */
 .blink {
   display: inline-block;
   width: 3px;
@@ -285,7 +271,6 @@ nav, header, main, footer, #backToTop, .modal {
   animation: fadeUp 0.7s 1s ease both;
 }
 
-/* CHANGE: two button variants */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -322,7 +307,6 @@ nav, header, main, footer, #backToTop, .modal {
   box-shadow: var(--glow-c);
 }
 
-/* CHANGE: scroll hint arrow at bottom of hero */
 .scroll-hint {
   position: absolute;
   bottom: 36px;
@@ -356,7 +340,6 @@ nav, header, main, footer, #backToTop, .modal {
 ═══════════════════════════════════════════════ */
 section { padding: 100px 40px; }
 
-/* CHANGE: monospace label above every section heading */
 .section-label {
   display: block;
   font-family: 'Space Mono', monospace;
@@ -380,7 +363,6 @@ section { padding: 100px 40px; }
 
 /* ═══════════════════════════════════════════════
    ABOUT
-   CHANGE: glassmorphism card + 3-col grid
 ═══════════════════════════════════════════════ */
 .about {
   background: radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255, 0, 255, 0.06) 0%, transparent 70%);
@@ -411,30 +393,6 @@ section { padding: 100px 40px; }
 }
 .about-text p + p { margin-top: 16px; }
 .about-text strong { color: var(--cyan); font-weight: 500; }
-
-/* CHANGE: tech chip row below bio — quick-scan stack view */
-.tech-stack-inline {
-  margin-top: 28px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.tech-chip {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  padding: 5px 12px;
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  border-radius: 2px;
-  color: var(--cyan);
-  background: rgba(0, 255, 255, 0.05);
-  transition: all 0.25s;
-}
-.tech-chip:hover {
-  border-color: var(--cyan);
-  box-shadow: var(--glow-c);
-  transform: translateY(-2px);
-}
 
 .about-sidebar {
   display: flex;
@@ -492,7 +450,8 @@ section { padding: 100px 40px; }
 
 /* ═══════════════════════════════════════════════
    PROJECTS
-   CHANGE: numbered cards, glass surfaces, better hover
+   FIX: 3-column grid so 5 cards sit as 3+2,
+   not 2+2 with an awkward orphan
 ═══════════════════════════════════════════════ */
 #projects {
   text-align: center;
@@ -501,13 +460,12 @@ section { padding: 100px 40px; }
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-/* CHANGE: scroll-reveal via IntersectionObserver (animation.js) */
 .project-card {
   border: 1.5px solid var(--border);
   border-radius: 12px;
@@ -533,7 +491,6 @@ section { padding: 100px 40px; }
   box-shadow: var(--glow-p);
 }
 
-/* CHANGE: numbered label replaces big circle number */
 .project-number {
   font-family: 'Space Mono', monospace;
   font-size: 0.68rem;
@@ -572,7 +529,6 @@ section { padding: 100px 40px; }
   background: rgba(255, 0, 255, 0.05);
 }
 
-/* CHANGE: coming-soon card styled distinctly with dashed border */
 .card-coming {
   border-style: dashed;
   border-color: rgba(255, 255, 255, 0.1);
@@ -588,7 +544,6 @@ section { padding: 100px 40px; }
 
 /* ═══════════════════════════════════════════════
    MODAL
-   CHANGE: wider, button row, ESC closes (in JS)
 ═══════════════════════════════════════════════ */
 .modal {
   display: none;
@@ -647,8 +602,17 @@ section { padding: 100px 40px; }
 }
 #modalTech { margin-top: 20px; }
 #modalTech ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+#modalTech ul li {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 0, 255, 0.4);
+  border-radius: 2px;
+  color: var(--pink);
+  background: rgba(255, 0, 255, 0.05);
+}
 
-/* CHANGE: modal buttons in a flex row */
 .modal-btns {
   display: flex;
   gap: 12px;
@@ -658,7 +622,6 @@ section { padding: 100px 40px; }
 
 /* ═══════════════════════════════════════════════
    CONTACT
-   CHANGE: refined inputs, purple focus glows
 ═══════════════════════════════════════════════ */
 #contact {
   text-align: center;
@@ -698,6 +661,7 @@ section { padding: 100px 40px; }
 .contact-form input::placeholder,
 .contact-form textarea::placeholder { color: var(--muted); }
 
+/* FIX: cursor: pointer as fallback (cursor:none hides on mobile/touch) */
 .submit-btn {
   padding: 14px;
   border-radius: 4px;
@@ -708,7 +672,7 @@ section { padding: 100px 40px; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border: 2px solid var(--purple);
-  cursor: none;
+  cursor: pointer;
   transition: 0.25s;
 }
 .submit-btn:hover {
@@ -747,7 +711,6 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* CHANGE: square neon back-to-top (was circle before) */
 #backToTop {
   position: fixed;
   bottom: 28px;
@@ -770,8 +733,12 @@ footer {
 #backToTop:hover { transform: translateY(-4px); }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE  (CHANGE: improved mobile breakpoints)
+   RESPONSIVE
 ═══════════════════════════════════════════════ */
+@media (max-width: 1000px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 900px) {
   .about-box {
     grid-template-columns: 1fr;

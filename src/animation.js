@@ -1,11 +1,8 @@
 // animation.js
-// CHANGE: replaced scroll-event listener with IntersectionObserver
-// — more performant, no layout thrashing on every scroll tick
 
 export function animateOnScroll() {
   const cards = document.querySelectorAll(".project-card");
 
-  // CHANGE: IntersectionObserver instead of getBoundingClientRect on scroll
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -22,7 +19,6 @@ export function animateOnScroll() {
   cards.forEach((card) => observer.observe(card));
 }
 
-// CHANGE: brand new — floating neon particle canvas
 export function initParticles() {
   const canvas = document.getElementById("canvas");
   if (!canvas) return;
@@ -80,7 +76,6 @@ export function initParticles() {
   draw();
 }
 
-// CHANGE: brand new — custom cursor with lag-follow ring
 export function initCursor() {
   const dot  = document.getElementById("cur");
   const ring = document.getElementById("cur-ring");
@@ -95,7 +90,6 @@ export function initCursor() {
     dot.style.top  = my + "px";
   });
 
-  // ring lerps toward mouse position
   (function lerp() {
     rx += (mx - rx) * 0.12;
     ry += (my - ry) * 0.12;
@@ -104,10 +98,19 @@ export function initCursor() {
     requestAnimationFrame(lerp);
   })();
 
-  // grow ring on interactive elements
-  const interactives = "a, button, .project-card, .skill, .tech-chip";
-  document.querySelectorAll(interactives).forEach((el) => {
-    el.addEventListener("mouseenter", () => document.body.classList.add("cursor-grow"));
-    el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-grow"));
+  // FIX: use event delegation on document instead of querySelectorAll at init time.
+  // This covers dynamically-created project cards that don't exist when initCursor() runs.
+  const INTERACTIVE = "a, button, .project-card, .skill, .tech-chip";
+
+  document.addEventListener("mouseover", (e) => {
+    if (e.target.closest(INTERACTIVE)) {
+      document.body.classList.add("cursor-grow");
+    }
+  });
+
+  document.addEventListener("mouseout", (e) => {
+    if (e.target.closest(INTERACTIVE)) {
+      document.body.classList.remove("cursor-grow");
+    }
   });
 }
