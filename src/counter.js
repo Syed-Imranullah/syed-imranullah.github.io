@@ -9,7 +9,7 @@ export const projects = [
       "Full-stack Chrome extension for screen recording, screenshots, and automated cloud sync with a web-based media library.",
     tech: ["React", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "JWT", "Google OAuth 2.0", "Chrome MV3"],
     link: "https://antcapture.anttake.com/",
-    github: "https://github.com/Syed-Imranullah",
+    github: "https://github.com/anttake-syed/anttake-syed-extension-vid",
     presentation: "",
     detail: [
       "Built a Chrome Manifest V3 extension with React/Vite, implementing tab-based screen recording via MediaRecorder and tabCapture APIs that automatically sync captures to a Node.js/Express backend.",
@@ -26,7 +26,7 @@ export const projects = [
       "Full-stack soccer pick'em prediction league where users compete in private leagues by predicting real match outcomes, with automated scoring and live leaderboards.",
     tech: ["React", "Vite", "Node.js", "Express", "PostgreSQL", "node-cron", "footballdata.io API"],
     link: "https://soccer-backend-fc9f.onrender.com",
-    github: "https://github.com/Syed-Imranullah",
+    github: "https://github.com/The-Marcy-Lab-School-Assignments/full-stack-project-remix-Syed-Imranullah",
     presentation: "",
     detail: [
       "Built a REST API with Node.js/Express and PostgreSQL featuring session-based authentication, protected routes via custom middleware, and a five-table relational schema supporting many-to-many league membership and per-league prediction tracking with ownership-enforced CRUD operations.",
